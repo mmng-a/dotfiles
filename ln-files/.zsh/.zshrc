@@ -28,17 +28,15 @@ zinit load zsh-users/zsh-autosuggestions
 
 plugins=(git)
 
-cd $ZSHRCS
-for rc in *; do
+for rc in $ZSHRCS/*; do
 	[ $rc = '.' ] && continue
 	[ $rc = '.DS_Store' ] && continue
-	source $ZSHRCS/$rc
+	source $rc
 done
 
 export PATH=$PATH:$HOME/dotfiles/bin/
 
-cd $HOME/dotfiles/bin/completions/
-for file in *; do
+for file in $HOME/dotfiles/bin/completions/*; do
 	[ $file = '.' ] && continue
 	[ $file = '.DS_Store' ] && continue
 	source $file
