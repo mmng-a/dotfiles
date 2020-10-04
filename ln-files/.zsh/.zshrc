@@ -15,7 +15,7 @@ export FZF_DEFAULT_OPTS='--height 70% --preview-window right:66% --reverse --col
 setopt auto_cd
 setopt noclobber
 
-source $ZDOTDIR/zinit_installer.zsh
+source $ZDOTDIR/zinit-install.zsh
 
 # Plugins
 source "${HOME}/.zinit/bin/zinit.zsh"
@@ -28,6 +28,18 @@ zinit load zsh-users/zsh-autosuggestions
 
 plugins=(git)
 
-for rc in ${ls $ZSHRCS}; do
+cd $ZSHRCS
+for rc in *; do
+	[ $rc = '.' ] && continue
+	[ $rc = '.DS_Store' ] && continue
 	source $ZSHRCS/$rc
+done
+
+export PATH=$PATH:$HOME/dotfiles/bin/
+
+cd $HOME/dotfiles/bin/completions/
+for file in *; do
+	[ $file = '.' ] && continue
+	[ $file = '.DS_Store' ] && continue
+	source $file
 done
