@@ -1,0 +1,20 @@
+{
+	"languageserver": {
+		"swift": {
+			"command": "xcrun sourcekit-lsp",
+			"filetypes": ["swift"],
+			"rootPatterns": ["Package.swift"]
+		},
+		"rust": {
+			"command": "rust-analyzer",
+			"filetypes": ["rust"],
+			"rootPatterns": ["Cargo.toml"]
+		},
+		"haskell": {
+			"command": "haskell-language-server-wrapper",
+			"args": ["--lsp"],
+			"rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+			"filetypes": ["haskell", "lhaskell"]
+		}
+	}
+}

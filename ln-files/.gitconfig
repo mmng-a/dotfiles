@@ -1,0 +1,16 @@
+[user]
+	name = Masashi Aso
+	email = maashi.apple.japan@icloud.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	excludesfile = /Users/masashiaso/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /private/var/folders/jr/s49j2rsd4v35kp134g2wlvy80000gn/T/AppTranslocation/E39EB570-0A19-415E-9BF4-E72C82794664/d/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

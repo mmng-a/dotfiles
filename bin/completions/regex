@@ -1,0 +1,13 @@
+_regex() {
+    integer ret=1
+    local -a args
+    args+=(
+        ':pattern:'
+        ':text:'
+        '--match-head-and-tail[Match '"'"'^'"'"' and '"'"'$'"'"'.]'
+        '(-h --help)'{-h,--help}'[Print help information.]'
+    )
+    _arguments -w -s -S $args[@] && ret=0
+
+    return ret
+}

@@ -1,0 +1,5 @@
+--theme="base16"
+
+--map-syntax "*.sil:Swift"
+--map-syntax "*.keylayout:XML"
+--map-syntax "vimrc:VimL"

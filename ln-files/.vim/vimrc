@@ -1,0 +1,28 @@
+source ~/.vim/plugins.vim
+
+" vimrcを読み込む。
+let s:rcdir = '~/.vim/vimrcs/'
+let s:command = 'echo $(ls ' . s:rcdir . ')'
+let s:rcfiles = split(system(s:command), ' ')
+for s:rcname in s:rcfiles
+	execute 'source ' . s:rcdir . s:rcname
+endfor
+
+" encoding
+set fenc=utf-8
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,sjis
+scriptencoding utf-8
+
+set nobackup
+set nowritebackup
+set noundofile
+set viminfo+=n~/.vim/viminfo
+set autoread
+
+augroup swapchoice-readonly
+	autocmd!
+	autocmd SwapExists * let v:swapchoice = 'o'
+augroup END
+
