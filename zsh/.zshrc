@@ -34,8 +34,6 @@ for rc in $ZSHRCS/*; do
 	source $rc
 done
 
-export PATH=$PATH:$HOME/dotfiles/bin/
-
 for file in $HOME/dotfiles/bin/completions/*; do
 	[ $file = '.' ] && continue
 	[ $file = '.DS_Store' ] && continue

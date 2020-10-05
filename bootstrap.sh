@@ -11,3 +11,4 @@ done
 curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | sh
 cd $HOME/dotfiles/
 brew bundle
+cd $HOME
