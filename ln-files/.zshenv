@@ -1,4 +1,6 @@
-export DOTFILES=$HOME/dotfiles/
+zmodload zsh/zprof && zprof
+
+export DOTFILES=$HOME/dotfiles
 export ZDOTDIR=$DOTFILES/zsh
 export LESSHISTFILE=$DOTFILES/lesshst
 
