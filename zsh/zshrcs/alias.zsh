@@ -7,8 +7,8 @@ alias hist-fzf='history 1 | fzf'
 # https://github.com/Peltoche/lsd
 alias ls='lsd'
 alias l='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
+alias la='ls -A'
+alias lla='ls -lA'
 
 alias fzfp='fzf --preview "bat {} --color=always --style=changes,snip"'
 

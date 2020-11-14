@@ -3,6 +3,6 @@ lesshst
 zsh/.zsh_history
 zsh/.chpwd-recent-dirs
 ln-files/.vim/viminfo
-ln-files/.vim/plugged/
+ln-files/.vim/plugged
 ln-files/.config/coc/extensions/node_modules/
 ln-files/.config/gh/hosts.yml

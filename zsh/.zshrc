@@ -1,4 +1,4 @@
-export ZSHRCS=$ZDOTDIR/zshrcs
+local export ZSHRCS=$ZDOTDIR/zshrcs
 
 # keybind like emacs
 bindkey -e
@@ -18,7 +18,6 @@ setopt noclobber
 source $ZDOTDIR/zinit-install.zsh
 
 # Plugins
-source "${HOME}/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 zinit load momo-lab/zsh-abbrev-alias
@@ -29,13 +28,16 @@ zinit load zsh-users/zsh-autosuggestions
 plugins=(git)
 
 for rc in $ZSHRCS/*; do
-	[ $rc = '.' ] && continue
 	[ $rc = '.DS_Store' ] && continue
 	source $rc
 done
 
 for file in $HOME/dotfiles/bin/completions/*; do
-	[ $file = '.' ] && continue
 	[ $file = '.DS_Store' ] && continue
 	source $file
 done
+
+if (which zprof > /dev/null 2>&1) ;then
+  zprof
+fi
+export PATH="/usr/local/sbin:$PATH"

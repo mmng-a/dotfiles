@@ -11,3 +11,5 @@ export PATH=$PATH:$DOTFILES/bin/
 
 export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
+
+alias brew='PATH=/usr/local/sbin/:/usr/local/bin/:/usr/bin/:/bin/:/usr/sbin/:/sbin/ brew'
