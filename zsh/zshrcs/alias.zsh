@@ -1,5 +1,3 @@
-alias python='python3'
-alias pip='pip3'
 alias ql='qlmanage -p '$@' >& /dev/null'
 alias cot='cot -n'
 alias tree='tree -N -C'
@@ -11,7 +9,9 @@ alias la='ls -A'
 alias lla='ls -lA'
 
 alias fzfp='fzf --preview "bat {} --color=always --style=changes,snip"'
+alias fzcopy='fzf | pbcopy'
 
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
+
