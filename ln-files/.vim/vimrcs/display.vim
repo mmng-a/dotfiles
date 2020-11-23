@@ -8,6 +8,7 @@ set cursorline
 set wrap
 set display=lastline
 set pumheight=10
+set cmdheight=2
 set showmatch
 syntax on
 source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
