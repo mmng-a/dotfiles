@@ -1,4 +1,4 @@
-#files: 1076	version: 5.8
+#files: 1077	version: 5.8
 
 _comps=(
 '-' '_precommand'
@@ -182,6 +182,7 @@ _comps=(
 'base64' '_base64'
 'basename' '_basename'
 'bash' '_bash'
+'bat' '_bat'
 'batch' '_at'
 'baz' '_baz'
 'beadm' '_beadm'
@@ -519,7 +520,6 @@ _comps=(
 'fixwpps' '_psutils'
 'fixwwps' '_psutils'
 'flac' '_flac'
-'flameshot' '_flameshot'
 'fleetctl' '_fleetctl'
 'flex' '_flex'
 'flex++' '_flex'
@@ -781,6 +781,7 @@ _comps=(
 'htop' '_htop'
 'http' '_httpie'
 'hwinfo' '_hwinfo'
+'hyperfine' '_hyperfine'
 'ibus' '_ibus'
 'iceweasel' '_mozilla'
 'icombine' '_ispell'
@@ -1761,7 +1762,6 @@ _comps=(
 'yash' '_sh'
 'yast' '_yast'
 'yast2' '_yast'
-'youtube-dl' '_youtube-dl'
 'ypbind' '_yp'
 'ypcat' '_yp'
 'ypmatch' '_yp'
@@ -1949,29 +1949,29 @@ autoload -Uz _afew _android _archlinux-java _artisan _atach \
             _concourse _console _cppcheck _dad _debuild \
             _dget _dhcpcd _diana _docpad _drush \
             _ecdsautil _emulator _envdir _exportfs _fab \
-            _ffind _flameshot _fleetctl _flutter _force \
-            _fwupdmgr _gas _ghc _gist _git-flow \
-            _git-journal _git-pulls _git-revise _git-wtf _glances \
-            _golang _google _gtk-launch _hledger _homestead \
-            _httpie _ibus _include-what-you-use _inxi _jmeter \
-            _jmeter-plugins _jonas _jrnl _kak _kitchen \
-            _knife _language_codes _lunchy _middleman _mina \
-            _mix _mussh _mvn _nano _nftables \
-            _node _nvm _openssl _optirun _patool \
-            _perf _periscope _pgsql_utils _phing _pixz \
-            _pkcon _play _pm2 _port _protoc \
-            _pygmentize _rails _ralio _redis-cli _rfkill \
-            _rkt _rslsync _rspec _rsvm _rubocop \
-            _sbt _scala _scrub _sdd _setcap \
-            _setup.py _sfdx _showoff _srm _stack \
-            _subl _subliminal _supervisorctl _svm _tarsnap \
-            _teamocil _thor _tmuxinator _tmuxp _tox \
-            _trash-empty _trash-list _trash-put _trash-restore _udisksctl \
-            _ufw _vagrant _virtualbox _vnstat _wemux \
-            _wg-quick _xinput _xsel _yaourt _yarn \
-            _zcash-cli _zinit _brew _brew_cask _fd \
-            _gh _git _ninja _pastel _rg \
-            _starship _youtube-dl _SUSEconfig _a2ps _a2utils \
+            _ffind _fleetctl _flutter _force _fwupdmgr \
+            _gas _ghc _gist _git-flow _git-journal \
+            _git-pulls _git-revise _git-wtf _glances _golang \
+            _google _gtk-launch _hledger _homestead _httpie \
+            _ibus _include-what-you-use _inxi _jmeter _jmeter-plugins \
+            _jonas _jrnl _kak _kitchen _knife \
+            _language_codes _lunchy _middleman _mina _mix \
+            _mussh _mvn _nano _nftables _node \
+            _nvm _openssl _optirun _patool _perf \
+            _periscope _pgsql_utils _phing _pixz _pkcon \
+            _play _pm2 _port _protoc _pygmentize \
+            _rails _ralio _redis-cli _rfkill _rkt \
+            _rslsync _rspec _rsvm _rubocop _sbt \
+            _scala _scrub _sdd _setcap _setup.py \
+            _sfdx _showoff _srm _stack _subl \
+            _subliminal _supervisorctl _svm _tarsnap _teamocil \
+            _thor _tmuxinator _tmuxp _tox _trash-empty \
+            _trash-list _trash-put _trash-restore _udisksctl _ufw \
+            _vagrant _virtualbox _vnstat _wemux _wg-quick \
+            _xinput _xsel _yaourt _yarn _zcash-cli \
+            _zinit _bat _brew _brew_cask _fd \
+            _gh _git _hyperfine _ninja _pastel \
+            _rg _starship _SUSEconfig _a2ps _a2utils \
             _aap _abcde _absolute_command_paths _ack _acpi \
             _acpitool _acroread _adb _add-zle-hook-widget _add-zsh-hook \
             _alias _aliases _all_labels _all_matches _alsa-utils \

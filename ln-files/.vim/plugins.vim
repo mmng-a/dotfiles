@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'neoclide/coc.nvim', { 'tag': 'v0.0.78', 'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release'}
 
 Plug 'cocopon/iceberg.vim'
 Plug 'gkeep/iceberg-dark'

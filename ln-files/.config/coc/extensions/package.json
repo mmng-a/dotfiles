@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "coc-rust-analyzer": ">=0.10.1",
-    "coc-sourcekit": ">=0.0.2"
-  }
-}
