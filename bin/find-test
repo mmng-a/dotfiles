@@ -1,0 +1,9 @@
+#!bin/sh
+main() {
+	ls -A | grep -w $1 && pwd && exit 0
+	test `pwd` == "/" && exit 1
+	cd ..
+	main $1
+}
+
+main $1

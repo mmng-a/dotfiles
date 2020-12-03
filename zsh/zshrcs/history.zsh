@@ -1,5 +1,5 @@
 export HISTFILE=$ZDOTDIR/.zsh_history
-export HISTSIZE=1000
+export HISTSIZE=10000
 export SAVENIST=100000
 setopt EXTENDED_HISTORY
 setopt hist_ignore_dups

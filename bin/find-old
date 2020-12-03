@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+if [ $# != 1 -o $1 == "-h" -o $1 == "--help" ]; then
+	echo "USAGE: find-root-path FILENAME"
+	exit 1
+fi
+
+while [[ `pwd` != "/" ]]; do
+	if [[ `ls -A | grep -w $1` ]]; then
+		pwd
+		exit 0
+	fi
+	cd ..
+done
+
+exit 1
