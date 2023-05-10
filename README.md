@@ -3,5 +3,5 @@
 ## Install
 
 ```sh
-curl https://github.com/masasam-shi/dotfiles/bootstrap.sh | sh
+curl https://raw.githubusercontent.com/mmng-a/dotfiles/master/bootstrap.sh | sh
 ```
