@@ -29,7 +29,7 @@ inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-d> <Del>
 inoremap <C-k> <ESC>C
-inoremap <C-y> <ESC>pi
+" inoremap <C-y> <ESC>pi
 inoremap <C-t> <Esc><Left>"zx"zpa
 
 cnoremap <C-p> <Up>
@@ -40,7 +40,7 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-d> <Del>
 cnoremap <C-k> <ESC>C
-cnoremap <C-y> <ESC>pi
+" cnoremap <C-y> <ESC>pi
 cnoremap <C-t> <Esc><Left>"zx"zpa
 
 " 行を移動

@@ -1,3 +1,7 @@
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="/opt/homebrew/share/zsh/site-functions:$PATH"
+
 local export ZSHRCS=$ZDOTDIR/zshrcs
 
 # keybind like emacs
@@ -21,10 +25,9 @@ source $ZDOTDIR/zinit-install.zsh
 # Plugins
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
-zinit load momo-lab/zsh-abbrev-alias
 zinit ice wait'!0'; zinit load zsh-users/zsh-syntax-highlighting
 zinit ice wait'!0'; zinit load zsh-users/zsh-completions
-zinit load zsh-users/zsh-autosuggestions
+zinit ice wait'!0'; zinit load zsh-users/zsh-autosuggestions
 
 # ??
 plugins=(git)
@@ -39,7 +42,11 @@ for file in $HOME/dotfiles/bin/completions/*; do
 	source $file
 done
 
-if (which zprof > /dev/null 2>&1) ;then
-  zprof
-fi
-export PATH="/usr/local/sbin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/masashiaso/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

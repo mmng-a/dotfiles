@@ -40,5 +40,5 @@ nnoremap <silent> [Tab]o :tabonly<CR>
 nnoremap <silent> [Tab]e :tabedit<CR>
 nnoremap <silent> [Tab]n :tabnext<CR>
 nnoremap <silent> [Tab]p :tabprevious<CR>
-nnoremap <silent> [Tab]N :tabprevious<CR>
+nnoremap <silent> [Tab]N :tabprevious<C>R
 nnoremap <silent> [Tab]r :TabRecent<CR>

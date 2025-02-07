@@ -5,9 +5,8 @@ compinit
 # 補完の選択が楽に
 zstyle ':completion:*' menu select
 # 補完候補に色つける
-autoload -U colors ; colors ; zstyle ':completion:*' list-colors "${LS_COLORS}"
-# 補完の色
 export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+autoload -U colors ; colors ; zstyle ':completion:*' list-colors "${LS_COLORS}"
 # キャッシュの利用による補完の高速化
 zstyle ':completion::complete:*' use-cache true
 # 大文字・小文字を区別しない(大文字を入力した場合は区別する)

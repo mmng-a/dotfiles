@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "create-nuxt-app": "^4.0.0",
+    "create-react-native-app": "^3.6.0"
+  }
+}

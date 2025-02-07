@@ -1,0 +1,100 @@
+Nothing <|> Just 2
+import <|> from Prelude
+Just 1 <|> Just 2
+import Prelude
+import Prelrde
+Just 1 <|> Just 2
+days 2023 11 13
+:load practice5.hs 
+days 2023 11 13
+:load practice5.hs 
+[1 .. 7]
+sum(map yearDay [1 .= 2023]) + sum(map (monthDays 2023) [1 .= 11]) + 13
+sum(map yearDay [1 ..= 2023]) + sum(map (monthDays 2023) [1 ..= 11]) + 13
+sum(map yearDay [1 ... 2023]) + sum(map (monthDays 2023) [1 ... 11]) + 13
+sum(map yearDay [1 .. 2023]) + sum(map (monthDays 2023) [1 .. 11]) + 13
+sum(map yearDay [1 .. 2023]) + sum(map (monthDays 2023) [1 .. 11]) + 12
+sum(map yearDay [1 .. 2023]) + sum(map (monthDays 2023) [1 .. 4])
+sum (map (monthDays 2023) [1 .. 4])
+map (monthDays 2023) [1 .. 4]
+sum(map (monthDays year) [1 .. 4])
+sum(map yearDay [1 .. 2023])
+map yearDay [1 .. 2023]
+days 2023 11 11
+:load practice5.hs 
+monthDays 2020 2
+monthDays 2023 2
+monthDays 2023 1
+yearDay 1900
+yearDay 2000
+yearDay 2024
+yearDay 2022
+days 2023 11 13
+:load practice5.hs
+:load practice5.hs
+days 1 1 31
+days 1 1 12
+days y m d | (m == 1 && d < 31) = y + m + d
+:load practice5.hs
+_append :: [a] -> [a] -> [a]
+append :: [a] -> [a] -> [a]
+append [1,2,3] [4,5,6]
+append (x:xs) ys = append xs (ys:x)
+append [1,2,3] [4,5,6]
+append (x:xs) ys = append xs (x:ys)
+append (x:xs) ys = append xs x:ys
+append [] ys = ys
+days y n d = let {\
+days y n d = let {
+unzip ts = if null ts then ([], []) else ([fst (head ts)] ++ head (unzip (tail ts)), [snd (head ts)] ++ head (unzip (tail ts)))
+unzip ts = if null ts then ([], []) else (fst (head ts) ++ head (unzip (tail ts)), snd (head ts) ++ head (unzip (tail ts)))
+unzip ts = if null ts then ([], []) else [(fst (head ts), snd (head ts))] ++ (unzip (tail ts))
+unzip ts = if null ts than ([], []) else [(fst (head ts), snd (head ts))] ++ (unzip (tail ts))
+snd (1,2,3)
+_filter even [1 ..10]
+_filter f list = if null list then [] else if (f (head list)) then (head list) : _filter f (tail list) else _filter f (tail list)
+_filter f list = if null then [] else if (f (head list)) then (head list) : _filter f (tail list) else _filter f (tail list)
+_filter f list = if null then [] else if (f (head list)) then (head list) : _filter f (tail list) else _filter (tail list)
+_map f [1, 3 ..9]
+_map f list = if null list then [] else (f (head list)) : _map f (tail list)
+_map f list = if null list then [] then (f (head list)) : _map f (tail list)
+_map f list = if null list then []
+map f [1, 3 .. 9]
+map f [1, 3, 9]
+f  3
+f x = x * x
+1 `seq` 5
+1 seq 5
+seq [1] [3]
+seq 1 3
+:t seq
+seq
+range
+map (+2) [2,3,4,5,6]
+map bs [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+bs 14
+bs 16
+bs 15
+bs 10
+bs 9
+bs 7
+bs 5
+bs 1
+bs 3
+bs 9
+bs n = if n <= 0 then 0 else n*n + bs(n-2)
+bs 9
+bs 10
+bs n = if n == 0 then 0 else n*n + bs(n-2)
+bs 10
+bs n = if n == 0 then [] else n*n + bs(n-2)
+bs 9
+bs 10
+:load bs.hs
+bk 9
+bk 7
+bk 5
+bk 3
+bk 1
+bk 0
+bk 2

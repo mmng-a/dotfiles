@@ -22,12 +22,11 @@ let &t_SR .= "\e[4 q"
 au ColorScheme * hi SpecialKey ctermfg=241 guifg=#606060
 au ColorScheme * hi EndOfBuffer ctermfg=241 guifg=#606060
 au ColorScheme * hi NonText ctermfg=241 guifg=#606060
+set background=dark
 colorscheme iceberg
 
 " status line
 set laststatus=2
 set noshowmode
-let g:lightline = {
-	\ 'colorscheme': 'icebergDark'
-	\ }
+let g:lightline = { 'colorscheme': 'icebergDark' }
 

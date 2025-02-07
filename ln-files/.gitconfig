@@ -1,6 +1,6 @@
 [user]
 	name = Masashi Aso
-	email = maashi.apple.japan@icloud.com
+	email = masashi.apple.japan@icloud.com
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -22,3 +22,5 @@
 	line-numbers = true
 [interactivity]
 	diffFilter = delta --color-only
+[init]
+	defaultBranch = main

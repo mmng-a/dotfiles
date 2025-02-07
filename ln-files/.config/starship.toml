@@ -3,6 +3,7 @@ disabled = false
 
 [cmd_duration]
 format = "⌚[$duration]($style) "
+show_notifications = true
 
 [swift]
 symbol = " "

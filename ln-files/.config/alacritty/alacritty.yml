@@ -6,6 +6,7 @@ window:
     columns: 100
     lines:    40
   history: 10000
+  opacity: 0.975
 
 font:
   size: 13.0
@@ -42,7 +43,6 @@ colors:
     cyan:    '#95c4ce'
     white:   '#d2d4de'
 
-background_opacity: 0.975
 background_blur: true
 
 key_bindings:
