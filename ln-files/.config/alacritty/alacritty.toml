@@ -44,10 +44,10 @@ action = "ToggleFullscreen"
 key = "F"
 mods = "Command"
 
-[[keyboard.bindings]]
-action = "SpawnNewInstance"
-key = "N"
-mods = "Command"
+# [[keyboard.bindings]]
+# action = "SpawnNewInstance"
+# key = "N"
+# mods = "Command"
 
 [[keyboard.bindings]]
 action = "DecreaseFontSize"

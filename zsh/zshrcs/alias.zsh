@@ -1,7 +1,7 @@
 alias ql='qlmanage -p '$@' >& /dev/null'
 alias cot='cot -n'
 alias tree='tree -N -C'
-alias hist-fzf='history -r 1 | fzf'
+alias histf='history -r 1 | fzf'
 alias spm='swift package'
 alias fzfp='fzf --preview "bat {} --color=always --style=changes,snip"'
 alias fzcopy='fzf | pbcopy'
@@ -11,11 +11,12 @@ alias ls='lsd'
 alias l='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
-alias grep='rg'
 
+alias grep='rg'
 alias rm="trash $@"
 alias mv='mv -i'
 alias cp='cp -i'
+alias cat='bat'
 
 alias lesr='less -R'
 alias bess="bat -f $@ | lesr"
@@ -23,4 +24,6 @@ alias bess="bat -f $@ | lesr"
 alias ...=../..
 alias ....=../../..
 alias .....=../../../..
+
+alias cot='open -a CotEditor'
 

@@ -1,4 +1,4 @@
-fpath=(~/.zsh/completion $fpath)
+fpath=(~/dotfiles/zsh/completions/ $fpath)
 autoload -Uz compinit
 compinit
 
@@ -18,4 +18,3 @@ setopt complete_in_word
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8,bold"
 ZSH_AUTOSUGGEST_HISTORY_IGNORE=("cd *" "?(#c50,)")
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
-

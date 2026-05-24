@@ -13,9 +13,16 @@ export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 
 # alias brew='PATH=/usr/local/sbin/:/usr/local/bin/:/usr/bin/:/bin/:/usr/sbin/:/sbin/ brew'
-export ANDROID_SDK=~/Library/Android/sdk
-export PATH=/Users/masashiaso/Library/Android/sdk/platform-tools:$PATH
-export ANDROID_SDK=/Users/masashiaso/Library/Android/sdk
-export PATH=/Users/masashiaso/Library/Android/sdk/platform-tools:$PATH
+export ANDROID_HOME=/Users/masashiaso/Library/Android/sdk
+export PATH=$ANDROID_HOME/cmdline-tools/latest:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+export PATH=$ANDROID_HOME/emulator:$PATH
+
 export PATH=/Users/masashiaso/.local/bin:$PATH
 export PATH=/Users/masashiaso/.ghcup/bin:$PATH
+
+# Java path
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export JAVA_HOME="/opt/homebrew/opt/openjdk"
+# export JAVA_HOME="/opt/homebrew/opt/java"
+
