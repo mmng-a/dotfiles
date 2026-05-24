@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+# for copy and paste
+shopt -q expand_aliases 2>/dev/null || shopt -s expand_aliases 2>/dev/null
+eval "$*"
+
