@@ -1,4 +1,0 @@
-_yum_available_pkgs=( ${(Q)"${(z)$(<<\EO:_yum_available_pkgs
-
-EO:_yum_available_pkgs
-)}"} )
