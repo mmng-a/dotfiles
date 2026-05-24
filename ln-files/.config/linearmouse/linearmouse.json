@@ -1,0 +1,30 @@
+{
+  "schemes" : [
+    {
+      "pointer" : {
+        "acceleration" : 1,
+        "speed" : 0.1064
+      },
+      "if" : {
+        "device" : {
+          "vendorID" : "0x47d",
+          "productID" : "0x2041",
+          "productName" : "Kensington Slimblade Trackball",
+          "category" : "mouse"
+        }
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 0.2
+        },
+        "speed" : {
+          "vertical" : 0
+        },
+        "distance" : {
+          "vertical" : "auto"
+        }
+      }
+    }
+  ],
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0"
+}
