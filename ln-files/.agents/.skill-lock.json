@@ -1,0 +1,207 @@
+{
+  "version": 3,
+  "skills": {
+    "asc-aso-audit": {
+      "source": "rudrankriyam/asc-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/rudrankriyam/asc-skills.git",
+      "skillPath": "skills/asc-aso-audit/SKILL.md",
+      "skillFolderHash": "c33fb22e5658f6a9bd9db73b80589d2add78aecf",
+      "installedAt": "2026-05-17T16:00:21.226Z",
+      "updatedAt": "2026-05-17T16:00:21.226Z"
+    },
+    "asc-localize-metadata": {
+      "source": "rudrankriyam/asc-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/rudrankriyam/asc-skills.git",
+      "skillPath": "skills/asc-localize-metadata/SKILL.md",
+      "skillFolderHash": "1e87ce90ca6947562c838b38130fd56e3c0dfbba",
+      "installedAt": "2026-05-17T16:00:21.227Z",
+      "updatedAt": "2026-05-17T16:00:21.227Z"
+    },
+    "asc-metadata-sync": {
+      "source": "rudrankriyam/asc-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/rudrankriyam/asc-skills.git",
+      "skillPath": "skills/asc-metadata-sync/SKILL.md",
+      "skillFolderHash": "564688da54466ebe0eb1ab9c4bd6942998cc38d8",
+      "installedAt": "2026-05-17T16:00:21.228Z",
+      "updatedAt": "2026-05-17T16:00:21.228Z"
+    },
+    "asc-notarization": {
+      "source": "rudrankriyam/asc-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/rudrankriyam/asc-skills.git",
+      "skillPath": "skills/asc-notarization/SKILL.md",
+      "skillFolderHash": "36d8850790528df621beafcd6e511a6d24d685c0",
+      "installedAt": "2026-05-17T16:00:21.228Z",
+      "updatedAt": "2026-05-17T16:00:21.228Z"
+    },
+    "asc-subscription-localization": {
+      "source": "rudrankriyam/asc-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/rudrankriyam/asc-skills.git",
+      "skillPath": "skills/asc-subscription-localization/SKILL.md",
+      "skillFolderHash": "b7d47e584af0e780e5ca40c3418ec6dd0f6f8e71",
+      "installedAt": "2026-05-17T16:00:21.229Z",
+      "updatedAt": "2026-05-17T16:00:21.229Z"
+    },
+    "asc-whats-new-writer": {
+      "source": "rudrankriyam/asc-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/rudrankriyam/asc-skills.git",
+      "skillPath": "skills/asc-whats-new-writer/SKILL.md",
+      "skillFolderHash": "95607774f0b4f620cc4a02a33bc4a3281845a76b",
+      "installedAt": "2026-05-17T16:00:21.229Z",
+      "updatedAt": "2026-05-17T16:00:21.229Z"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "3013fdeb8a11b10b1eb795ec3ae8bfca38f7c26d",
+      "installedAt": "2026-05-17T16:00:25.347Z",
+      "updatedAt": "2026-05-24T16:25:06.416Z"
+    },
+    "gh-stack": {
+      "source": "github/gh-stack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/github/gh-stack.git",
+      "skillPath": "skills/gh-stack/SKILL.md",
+      "skillFolderHash": "474deca0369d18493405fde3808db6af9f628cf5",
+      "installedAt": "2026-05-19T07:15:28Z",
+      "updatedAt": "2026-05-19T07:15:28Z"
+    },
+    "figma": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/openai/skills.git",
+      "skillPath": "skills/.curated/figma/SKILL.md",
+      "skillFolderHash": "b61e723c00a0757daf549ac6d8835ef1c3a7ed10",
+      "installedAt": "2026-05-24T16:21:44.264Z",
+      "updatedAt": "2026-05-24T16:21:44.264Z"
+    },
+    "figma-implement-design": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/openai/skills.git",
+      "skillPath": "skills/.curated/figma-implement-design/SKILL.md",
+      "skillFolderHash": "122e36f32ef3fc85374d70c4fb62a83861816e40",
+      "installedAt": "2026-05-24T16:21:44.267Z",
+      "updatedAt": "2026-05-24T16:21:44.267Z"
+    },
+    "playwright": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/openai/skills.git",
+      "skillPath": "skills/.curated/playwright/SKILL.md",
+      "skillFolderHash": "74888f3c1d5581aea6415e78d5fbd760a8ab2a41",
+      "installedAt": "2026-05-24T16:21:44.267Z",
+      "updatedAt": "2026-05-24T16:21:44.267Z"
+    },
+    "screenshot": {
+      "source": "openai/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/openai/skills.git",
+      "skillPath": "skills/.curated/screenshot/SKILL.md",
+      "skillFolderHash": "52b8e26e5313cfeba3da7cb9057bdb94c1cf7ed1",
+      "installedAt": "2026-05-24T16:21:44.268Z",
+      "updatedAt": "2026-05-24T16:21:44.268Z"
+    },
+    "vercel-composition-patterns": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/composition-patterns/SKILL.md",
+      "skillFolderHash": "bf90d0a4b83ea054653350f9c67f6de235d3a368",
+      "installedAt": "2026-05-24T16:22:55.207Z",
+      "updatedAt": "2026-05-24T16:22:55.207Z"
+    },
+    "deploy-to-vercel": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/deploy-to-vercel/SKILL.md",
+      "skillFolderHash": "1378aa506439f26c809dbcfc61515cbd70f93d69",
+      "installedAt": "2026-05-24T16:22:55.208Z",
+      "updatedAt": "2026-05-24T16:22:55.208Z"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/react-best-practices/SKILL.md",
+      "skillFolderHash": "343db72180d05814949fef7d46be96b5c6ee86b3",
+      "installedAt": "2026-05-24T16:22:55.208Z",
+      "updatedAt": "2026-05-24T16:22:55.208Z"
+    },
+    "vercel-react-native-skills": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/react-native-skills/SKILL.md",
+      "skillFolderHash": "8b4c6a51914e2111ab6f4f00cb81778652aa241d",
+      "installedAt": "2026-05-24T16:22:55.208Z",
+      "updatedAt": "2026-05-24T16:22:55.208Z"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "skillFolderHash": "3116f3e62dbd02b44a598b1aa690d2a8938e8f89",
+      "installedAt": "2026-05-24T16:22:55.208Z",
+      "updatedAt": "2026-05-24T16:22:55.208Z"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/anthropics/skills.git",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "skillFolderHash": "928950704df8a8b885c03de5da626331e6f29cf8",
+      "pluginName": "example-skills",
+      "installedAt": "2026-05-24T16:24:50.507Z",
+      "updatedAt": "2026-05-24T16:24:50.507Z"
+    },
+    "mobile-ios-design": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/wshobson/agents.git",
+      "skillPath": "plugins/ui-design/skills/mobile-ios-design/SKILL.md",
+      "skillFolderHash": "e8dac5ffb25fc4cf972db39df0cd2fb8eb1c59e3",
+      "installedAt": "2026-05-24T16:25:07.017Z",
+      "updatedAt": "2026-05-24T16:25:07.017Z"
+    },
+    "shadcn": {
+      "source": "shadcn/ui",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/shadcn/ui.git",
+      "skillPath": "skills/shadcn/SKILL.md",
+      "skillFolderHash": "a8404703769866faf15bee897c9ae6e252ac2d35",
+      "installedAt": "2026-05-24T16:25:07.553Z",
+      "updatedAt": "2026-05-24T16:25:07.553Z"
+    },
+    "app-store-optimization": {
+      "source": "wsbs20/claude-code-aso-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/wsbs20/claude-code-aso-skill.git",
+      "skillPath": "app-store-optimization/SKILL.md",
+      "skillFolderHash": "d874732716d5947777f65e0dee528c20595bc67e",
+      "installedAt": "2026-05-24T16:40:43.861Z",
+      "updatedAt": "2026-05-24T16:40:43.861Z"
+    },
+    "ios-accessibility": {
+      "source": "dadederk/ios-accessibility-agent-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/dadederk/ios-accessibility-agent-skill.git",
+      "skillPath": "ios-accessibility/SKILL.md",
+      "skillFolderHash": "e9fff0342ff1ee94d2a4e2d80315d6d039f2c293",
+      "installedAt": "2026-05-24T16:40:47.405Z",
+      "updatedAt": "2026-05-24T16:40:47.405Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  }
+}
