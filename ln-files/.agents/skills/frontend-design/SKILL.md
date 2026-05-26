@@ -33,6 +33,42 @@ Focus on:
 - **Spatial Composition**: Unexpected layouts. Asymmetry. Overlap. Diagonal flow. Grid-breaking elements. Generous negative space OR controlled density.
 - **Backgrounds & Visual Details**: Create atmosphere and depth rather than defaulting to solid colors. Add contextual effects and textures that match the overall aesthetic. Apply creative forms like gradient meshes, noise textures, geometric patterns, layered transparencies, dramatic shadows, decorative borders, custom cursors, and grain overlays.
 
+## Copy Line Breaks
+
+When shaping headings, lead copy, and short marketing text:
+- Use `span` wrappers for intentional visual lines. Set each span to `display: block` on wide layouts, and switch to `display: inline` at narrow breakpoints when fixed lines would look awkward.
+- Use `wbr` only as an optional break point inside a word or phrase. It should help long terms, mixed Japanese/English product names, URLs, IDs, or carefully chosen phrase boundaries wrap gracefully, not force a layout.
+- Use `br` only when the line break is semantically part of the content, such as addresses, signatures, poems, or truly fixed copy. Avoid using `br` as the default tool for desktop-only visual line breaks.
+- For Japanese copy, including Japanese-only and mixed Japanese/English text, prefer `word-break: keep-all` with `overflow-wrap: anywhere` on the copy container so Japanese text does not split unnaturally while still avoiding overflow on narrow screens.
+
+Preferred pattern for designed lead copy:
+
+```html
+<p class="lead-copy">
+  <span>国内外のクラフト<wbr>ビールを厳選。</span>
+  <span>季節ごとに入れ替わる<wbr>ラインナップを</span>
+  <span>ぜひお楽しみください。</span>
+</p>
+```
+
+```css
+.lead-copy {
+  line-height: 1.9;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.lead-copy span {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .lead-copy span {
+    display: inline;
+  }
+}
+```
+
 ## Responsive Layout
 
 - Prefer responsive CSS that does not require media queries when it can express the layout cleanly, such as `clamp()`, `min()`, `max()`, `minmax()`, `auto-fit`, `auto-fill`, intrinsic sizing, flex/grid wrapping, container-relative units, and stable aspect ratios.
