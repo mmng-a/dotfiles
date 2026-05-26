@@ -33,6 +33,12 @@ Focus on:
 - **Spatial Composition**: Unexpected layouts. Asymmetry. Overlap. Diagonal flow. Grid-breaking elements. Generous negative space OR controlled density.
 - **Backgrounds & Visual Details**: Create atmosphere and depth rather than defaulting to solid colors. Add contextual effects and textures that match the overall aesthetic. Apply creative forms like gradient meshes, noise textures, geometric patterns, layered transparencies, dramatic shadows, decorative borders, custom cursors, and grain overlays.
 
+## Responsive Layout
+
+- Prefer responsive CSS that does not require media queries when it can express the layout cleanly, such as `clamp()`, `min()`, `max()`, `minmax()`, `auto-fit`, `auto-fill`, intrinsic sizing, flex/grid wrapping, container-relative units, and stable aspect ratios.
+- Use media queries when the layout or interaction actually needs a breakpoint-specific change. Default to two size modes: desktop and mobile.
+- Choose breakpoint widths based on what changes at that breakpoint, not on a generic device list. For example, switch when a navigation can no longer fit, when a two-column layout becomes cramped, or when touch ergonomics require a different control arrangement.
+
 NEVER use generic AI-generated aesthetics like overused font families (Inter, Roboto, Arial, system fonts), cliched color schemes (particularly purple gradients on white backgrounds), predictable layouts and component patterns, and cookie-cutter design that lacks context-specific character.
 
 Interpret creatively and make unexpected choices that feel genuinely designed for the context. No design should be the same. Vary between light and dark themes, different fonts, different aesthetics. NEVER converge on common choices (Space Grotesk, for example) across generations.
