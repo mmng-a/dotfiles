@@ -77,7 +77,8 @@ Generate a complete HTML/CSS/JS mockup including:
 - Unique page title
 
 **CSS Styling:**
-- Responsive design (mobile-first)
+- Responsive design is mandatory. Every design must work at mobile, tablet, and desktop widths unless the user explicitly asks for a fixed-size artifact.
+- Mobile-first CSS, with fluid sizing and layout rules that prevent horizontal overflow.
 - CSS Grid or Flexbox for layouts
 - Custom properties (CSS variables) for theming
 - Smooth transitions and animations
@@ -425,6 +426,13 @@ Based on verification results:
 ## Design Patterns & Best Practices
 
 ### Responsive Design
+
+Responsive support is a required deliverable, not an optional enhancement:
+- Every generated or refactored design must be usable at mobile, tablet, and desktop viewport widths.
+- Do not deliver a layout that only works at the current desktop preview size.
+- Prevent horizontal scrolling caused by fixed widths, oversized images, long labels, navigation, cards, tables, or form controls.
+- Ensure text remains readable and interactive controls remain tappable on narrow screens.
+- If a design cannot be made responsive without changing scope, state the constraint clearly and ask before proceeding.
 
 Prefer responsive CSS that does not require media queries when it can express the layout cleanly:
 - Use `clamp()`, `min()`, `max()`, `minmax()`, `auto-fit`, `auto-fill`, intrinsic sizing, flex/grid wrapping, container-relative units, and stable aspect ratios.
