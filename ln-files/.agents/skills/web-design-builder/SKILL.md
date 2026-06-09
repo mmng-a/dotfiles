@@ -64,6 +64,35 @@ When a user requests a web design, start by understanding their needs:
 
 ### Phase 2: Design Generation
 
+#### Step 0: Set Page Strategy
+
+Before generating a marketing page, landing page, or website top page, decide the single primary message the page should communicate. Align the main copy, supporting copy, CTAs, section headings, imagery, and supporting details around that message.
+
+Use other information only as supporting roles:
+- proof: why the claim is believable
+- method: how the value is delivered
+- audience: who it is for
+- result: what changes for the visitor
+- supplement: what is needed for judgment
+
+Do not make a top page a summary of every lower page. Select 3-5 representative routes that directly support the goal, such as inquiry, booking, visit, purchase, recruitment, or key service pages. Leave secondary information to global navigation, footer links, related links, or lower-page links.
+
+Give each section one role. Do not put problem, strength, method, result, team, and CTA into one heading or paragraph. Each section should answer one clear question: what this is, who it is for, why choose it, why trust it, how it works, or what the visitor should do next.
+
+Write copy that a first-time visitor can judge quickly. Prefer easy-to-understand meaning over surface polish. In copy, include the business, store, or service type; what is strong about it; who it is for; when it is chosen; what changes after use; or what action the visitor can take when those details matter.
+
+Abstract language is allowed, but do not use it to hide missing specifics. If an abstract value is important, connect it to verifiable evidence such as actual features, reviews, photos, location, prices, qualifications, team structure, delivery method, or results supplied by the user. Use reader-facing words instead of internal categories, industry jargon, or conceptual slogans alone.
+
+Use generic expressions only when the surrounding copy gives them specific meaning or evidence. Replace copy that could apply unchanged to any business. Do not invent rankings, exaggerated claims, achievements, reviews, guarantees, prices, qualifications, or outcomes. Omit uncertain claims or mark them as unconfirmed when the task format allows.
+
+Make CTA labels describe the action in the visitor's context. If the same CTA appears more than once, change the surrounding context so each instance has a clear role.
+
+Before finalizing, remove copy that packs multiple meanings into one sentence, lacks judgment value, explains only from the seller's perspective, drifts from the primary message, has unclear meaning breaks when read aloud, or repeats another section's meaning.
+
+Avoid repeating the same meaning, phrase, claim, CTA, or visual pattern across the page. Repeated elements must have different roles: introduce the value, prove it, or lead to action. Merge cards or sections whose only difference is wording.
+
+Choose a visual direction that supports the primary message, not just a surface style. Meaningful variation should change several of these: first-view composition, content priority, photography or visual motif, typography, spacing and density, proof material, CTA framing, or tone. Avoid template-like landing-page section order and safe designs that could apply to any business.
+
 #### Step 1: Create Design Mockup
 
 Generate a complete HTML/CSS/JS mockup including:
