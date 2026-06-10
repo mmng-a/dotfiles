@@ -38,6 +38,16 @@ Use direct labels for information the business owns or readers actively look for
 
 Use copy-led titles sparingly as accents for the primary promise, personal relevance, hesitation removal, or action. Treat examples as context checks, not templates: a staff section can be a direct label when it is lookup information, but a stronger copy title when the people are a major reason to choose the service; a concern section usually works better as a concrete situation or question than as a label like "Concerns."
 
+### Copy And Content Role Strategy
+
+Decide what each visible element is responsible for: heading, lead, body text, card, table, stat, image, caption, CTA, or note. Keep an element when it adds a distinct role such as framing the section, helping the reader judge relevance, explaining sequence, reducing hesitation, carrying emotion, or giving necessary evidence.
+
+Avoid stacking multiple elements that do the same job. Do not add a sentence merely to announce, summarize, or repeat information that the adjacent heading, cards, table, numbers, image, or CTA already communicates.
+
+Concrete information does not have to appear in prose. Choose prose when nuance, trust, atmosphere, or explanation matters; choose structured content such as numbers, labels, lists, tables, cards, captions, or CTAs when comparison, scanning, pricing, steps, results, or specifications matter.
+
+Before keeping or adding a copy element, check whether it has a role nearby elements do not, helps the reader decide or act, and avoids repeating visible information without adding meaning.
+
 Write copy that a first-time visitor can judge quickly. Prefer specific, reader-facing wording over abstract slogans, internal categories, or copy that could apply unchanged to any business. Ground claims in supplied evidence; do not invent rankings, reviews, guarantees, prices, qualifications, or outcomes.
 
 Use CTA labels that describe the visitor's action. Avoid repeating the same meaning, phrase, claim, CTA, card pattern, or section role. Merge cards or sections whose only difference is wording, and vary composition according to purpose: comparison rows, steps, proof blocks, image-led panels, compact links, or a single focused CTA.
