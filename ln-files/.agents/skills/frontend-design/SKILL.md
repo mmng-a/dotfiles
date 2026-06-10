@@ -28,7 +28,7 @@ Then define an implementation-ready direction that is:
 
 For marketing pages, landing pages, and website top pages, decide the single primary message first. Treat other information as proof, method, audience, result, or supplement, and align headings, CTAs, imagery, page routes, and supporting details around that message.
 
-Do not design a top page as a summary of every lower page. Select only the representative routes that support the goal, such as inquiry, booking, visit, purchase, recruitment, or key service pages. Give each section one role and one clear question to answer. Section headings should usually be noun phrases that name the role, such as "料金", "選ばれる理由", "導入事例", or "アクセス".
+Do not design a top page as a summary of every lower page. Select only the representative routes that support the goal, such as inquiry, booking, visit, purchase, recruitment, or key service pages. Give each section one role and one clear question to answer. Choose section title style by weight and purpose: structural sections usually need direct noun-phrase labels, while high-emphasis persuasion sections may use copy-led titles sparingly as accents. Treat any examples as context checks, not templates.
 
 Write copy that a first-time visitor can judge quickly. Prefer specific, reader-facing wording over abstract slogans, internal categories, or copy that could apply unchanged to any business. Ground claims in supplied evidence; do not invent rankings, reviews, guarantees, prices, qualifications, or outcomes.
 
