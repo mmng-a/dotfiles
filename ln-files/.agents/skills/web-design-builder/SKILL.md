@@ -66,7 +66,7 @@ When a user requests a web design, start by understanding their needs:
 
 #### Step 0: Apply Design Direction
 
-For marketing pages, landing pages, and website top pages, treat message hierarchy, copy, section roles, CTA intent, visual direction, and card repetition as `frontend-design` responsibilities. If those decisions are not supplied, use `frontend-design` first and build only after that direction is available.
+For marketing pages, landing pages, and website top pages, treat message hierarchy, copy, section roles, CTA intent, visual direction, and card repetition as design-direction responsibilities. If those decisions are not supplied, use `frontend-design` first to route to the appropriate design skill, then build only after that direction is available.
 
 In this skill, convert the chosen direction into semantic HTML, responsive CSS, accessible interactions, and verified behavior. Do not duplicate detailed copy strategy rules here.
 
