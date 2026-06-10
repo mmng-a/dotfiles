@@ -28,7 +28,15 @@ Then define an implementation-ready direction that is:
 
 For marketing pages, landing pages, and website top pages, decide the single primary message first. Treat other information as proof, method, audience, result, or supplement, and align headings, CTAs, imagery, page routes, and supporting details around that message.
 
-Do not design a top page as a summary of every lower page. Select only the representative routes that support the goal, such as inquiry, booking, visit, purchase, recruitment, or key service pages. Give each section one role and one clear question to answer. Choose section title style by weight and purpose: structural sections usually need direct noun-phrase labels, while high-emphasis persuasion sections may use copy-led titles sparingly as accents. Treat any examples as context checks, not templates.
+Do not design a top page as a summary of every lower page. Select only the representative routes that support the goal, such as inquiry, booking, visit, purchase, recruitment, or key service pages. Give each section one role and one clear question to answer.
+
+### Section Title Strategy
+
+Choose section titles by their role and weight inside that specific LP, not by fixed content category. The same category can take a plain label, a benefit-led phrase, or a stronger copy line depending on how important it is to the page's main message.
+
+Use direct labels for information the business owns or readers actively look for: pricing, menu, access, staff, results, process, and similar lookup sections. Be more careful with labels that describe the reader's state, emotion, or desire, such as concerns, needs, anxiety, or requests; those can feel like internal sorting or an assumption about the reader. Reframe them as concrete situations, audiences, use cases, or questions.
+
+Use copy-led titles sparingly as accents for the primary promise, personal relevance, hesitation removal, or action. Treat examples as context checks, not templates: a staff section can be a direct label when it is lookup information, but a stronger copy title when the people are a major reason to choose the service; a concern section usually works better as a concrete situation or question than as a label like "Concerns."
 
 Write copy that a first-time visitor can judge quickly. Prefer specific, reader-facing wording over abstract slogans, internal categories, or copy that could apply unchanged to any business. Ground claims in supplied evidence; do not invent rankings, reviews, guarantees, prices, qualifications, or outcomes.
 
