@@ -37,6 +37,8 @@ Decide what each visible element is responsible for: heading, lead, body text, c
 
 Avoid stacking multiple elements that do the same job. Do not add a sentence merely to announce, summarize, or repeat information that the adjacent heading, cards, table, numbers, image, or CTA already communicates.
 
+Do not add a small subtitle, eyebrow, kicker, or overline above a heading by default. This small label above the title is a habit, not a requirement, and most headings read better without it. Omit it unless it carries information the heading itself cannot, such as a section number in a sequence, a category the reader needs to place the section, or a label that genuinely changes how the heading is read. When in doubt, drop it and let the heading stand alone. Do not use it to restate the heading, add a generic tagline, or decorate the section.
+
 Concrete information does not have to appear in prose. Choose prose when nuance, trust, atmosphere, or explanation matters; choose structured content such as numbers, labels, lists, tables, cards, captions, or CTAs when comparison, scanning, pricing, steps, results, or specifications matter.
 
 Before keeping or adding a copy element, check whether it has a role nearby elements do not, helps the reader decide or act, and avoids repeating visible information without adding meaning.
