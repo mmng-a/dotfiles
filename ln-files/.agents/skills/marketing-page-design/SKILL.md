@@ -13,6 +13,16 @@ Decide the single primary message first. Treat other information as proof, metho
 
 Do not design a top page as a summary of every lower page. Select only the representative routes that support the goal, such as inquiry, booking, visit, purchase, recruitment, or key service pages. Give each section one role and one clear question to answer.
 
+## Page Intent
+
+Before choosing a visual direction, identify whether the page is primarily brand-led or conversion-led.
+
+A brand-led page helps visitors remember, understand, trust, or emotionally locate the business, product, place, or campaign. It can use more distinctive composition, mood, imagery, pacing, and typography when those choices clarify identity or leave a durable impression.
+
+A conversion-led page helps visitors decide and act now. It should make the offer, relevance, proof, objection handling, and CTA path clear. Distinctive visuals are still useful, but they must not hide the action, dilute the offer, or slow comparison.
+
+Many pages need both. Decide which role leads the first viewport, and which role supports later sections.
+
 ## Section Title Strategy
 
 Choose section titles by their role and weight inside that specific page, not by fixed content category. The same category can take a plain label, a benefit-led phrase, or a stronger copy line depending on how important it is to the page's main message.
@@ -35,6 +45,14 @@ Write copy that a first-time visitor can judge quickly. Prefer reader-facing wor
 
 Use CTA labels that describe the visitor's action. Avoid repeating the same meaning, phrase, claim, CTA, card pattern, or section role.
 
+## Direction Exploration
+
+When the page has no fixed visual reference, explore 2-4 distinct directions before producing the final layout. Do not treat color changes, border radius changes, or decorative accents as separate directions.
+
+Make alternatives differ by page intent and structure. Vary at least three of these: first-view composition, section order, typography scale, image treatment, proof material, CTA placement, background structure, motion, and content density.
+
+For each direction, state the first viewport, section order, visual device, CTA strategy, and tradeoff. Choose the final direction based on audience, content, page intent, implementation constraints, and maintainability.
+
 ## Layout Variety And Visual Focus
 
 Do not default to a card grid. First decide what visual form best fits the content's job. Use cards when items are truly peer-level and need comparison. For other jobs, consider forms that match the content: bubbles or scattered short lines for anxieties and quotes; horizontal lists for compact proof; comparison tables or side-by-side blocks for choices; timelines, arrows, or stepped bands for process; large photos with captions for evidence or atmosphere; split layouts for contrast; or sparse text-only blocks when the message should feel direct.
@@ -50,3 +68,11 @@ Choose a visual direction that supports the primary message, not just a surface 
 Commit to a clear aesthetic direction and execute it with precision. Use distinctive typography, a cohesive palette, contextual imagery, and background details that fit the subject. Bold maximalism and refined minimalism both work; the key is intentionality, hierarchy, and fit.
 
 Avoid generic AI-generated aesthetics such as interchangeable layouts, predictable card stacks, overused fonts, cliched gradients, and decorative effects that do not support the message.
+
+## References And Assets
+
+When visual direction is open, inspect real reference sites before designing. Prefer galleries that expose categories, tags, screenshots, and live-site links in a way that can be searched and verified.
+
+For Japanese marketing pages, start with SANKOU!, Web Design Clip, MUUUUU.ORG, and I/O 3000. For overseas landing-page structure or visual range, use Lapa Ninja and Siteinspire. Open the original live site for selected references and check first viewport, section order, mobile behavior, imagery, CTA placement, and motion.
+
+Use commercially usable assets proactively when supplied brand assets are insufficient. Consider photos, illustrations, textures, patterns, icons, and hand-drawn materials. Record the source URL and license or usage condition for any asset used. Do not use assets when the license is unclear, requires unavailable attribution, includes recognizable brands in a misleading way, or implies endorsement by identifiable people.
