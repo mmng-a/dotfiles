@@ -17,6 +17,14 @@ module.exports = {
     {
       match: finicky.matchHostnames(["meet.google.com"]),
       browser: "Google Chrome"
-    }
+    },
+		{
+			match: finicky.matchHostnames(["accounts.google.com"]),
+			browser: "Google Chrome"
+		},
+		{
+			match: finicky.matchHostnames(["https://claude.ai/oauth/authoriz"]),
+			browser: "Google Chrome"
+		}
   ]
 }
