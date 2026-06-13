@@ -13,7 +13,36 @@ alias la='ls -A'
 alias lla='ls -lA'
 
 alias grep='rg'
-alias rm="trash $@"
+unalias rm 2>/dev/null
+function rm() {
+	local paths=()
+	local stop_options=0
+
+	for arg in "$@"; do
+		if (( stop_options )); then
+			paths+=("$arg")
+			continue
+		fi
+
+		case "$arg" in
+			--)
+				stop_options=1
+				;;
+			-*)
+				;;
+			*)
+				paths+=("$arg")
+				;;
+		esac
+	done
+
+	if (( ${#paths[@]} == 0 )); then
+		print -u2 "rm: no paths given"
+		return 64
+	fi
+
+	trash "${paths[@]}"
+}
 alias mv='mv -i'
 alias cp='cp -i'
 alias cat='bat'
