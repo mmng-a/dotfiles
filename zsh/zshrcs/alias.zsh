@@ -11,7 +11,6 @@ alias l='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
 
-alias grep='rg'
 unalias rm 2>/dev/null
 function rm() {
 	local paths=()
