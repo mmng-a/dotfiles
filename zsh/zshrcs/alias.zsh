@@ -6,7 +6,35 @@ alias fzfp='fzf --preview "bat {} --color=always --style=changes,snip"'
 alias fzcopy='fzf | pbcopy'
 
 # https://github.com/Peltoche/lsd
-alias ls='lsd'
+unalias ls 2>/dev/null
+function ls() {
+	local use_macos_ls=0
+	local stop_options=0
+
+	for arg in "$@"; do
+		if (( stop_options )); then
+			continue
+		fi
+
+		case "$arg" in
+			--)
+				stop_options=1
+				;;
+			-[^-]*)
+				if [[ "${arg#-}" == *[@OeTG]* ]]; then
+					use_macos_ls=1
+					break
+				fi
+				;;
+		esac
+	done
+
+	if (( use_macos_ls )); then
+		command ls "$@"
+	else
+		lsd "$@"
+	fi
+}
 alias l='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
