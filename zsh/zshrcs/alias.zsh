@@ -1,5 +1,4 @@
 alias ql='qlmanage -p '$@' >& /dev/null'
-alias cot='cot -n'
 alias tree='tree -N -C'
 alias histf='history -r 1 | fzf'
 alias spm='swift package'
