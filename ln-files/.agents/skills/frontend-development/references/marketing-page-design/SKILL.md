@@ -29,7 +29,9 @@ Choose section titles by their role and weight inside that specific page, not by
 
 Use direct labels for information the business owns or readers actively look for: pricing, menu, access, staff, results, process, and similar lookup sections. Be more careful with labels that describe the reader's state, emotion, or desire, such as concerns, needs, anxiety, or requests; those can feel like internal sorting or an assumption about the reader. Reframe them as concrete situations, audiences, use cases, or questions.
 
-Use copy-led titles sparingly as accents for the primary promise, personal relevance, hesitation removal, or action. Treat examples as context checks, not templates: a staff section can be a direct label when it is lookup information, but a stronger copy title when the people are a major reason to choose the service; a concern section usually works better as a concrete situation or question than as a label like "Concerns."
+Default most section titles to short, scannable noun-phrase labels rather than full sentences. In Japanese this means 体言止め (noun-ending phrases), not predicate sentences ending in です・ます or a verb. A page where almost every section title is a sentence reads as monotonous and slow, and buries the few lines that should stand out; convert lookup and method sections back to concise labels.
+
+Use copy-led sentence titles sparingly as accents, and keep them a clear minority of the page's section titles — as a rough guide, no more than about a third. Reserve them for the primary promise (usually the hero) and the main action or CTA, and occasionally for personal relevance or hesitation removal. Treat examples as context checks, not templates: a staff section can be a direct label when it is lookup information, but a stronger copy title when the people are a major reason to choose the service; a concern section usually works better as a concrete situation or question than as a label like "Concerns."
 
 ## Copy And Content Role Strategy
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Drive Finder"
+  short_description: "Finder同期のGoogle Driveを安全に操作する"
+  default_prompt: "$google-drive-finder を使ってGoogle Drive内のファイルを探して。"

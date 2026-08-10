@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Design"
+  short_description: "プロダクト、iOS、Figmaの設計判断を支援します"
+  default_prompt: "Use $product-design to design an accessible product experience."

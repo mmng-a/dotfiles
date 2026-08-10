@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cloud SQL Prisma Migration"
+  short_description: "Run Prisma migrations against Cloud SQL through the Auth Proxy."
+  default_prompt: "Apply or verify a Prisma migration against a Cloud SQL PostgreSQL database using Cloud SQL Auth Proxy."

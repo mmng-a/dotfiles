@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workspace Context"
+  short_description: "画面履歴と明示されたスクリーンショットを確認します"
+  default_prompt: "Use $workspace-context to inspect the recent workspace context."

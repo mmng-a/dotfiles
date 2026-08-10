@@ -1,0 +1,4 @@
+interface:
+  display_name: "GCP Product Cost Report"
+  short_description: "Summarize GCP billing export costs by product buckets."
+  default_prompt: "Use this skill to produce the GCP product cost table from Billing Export using gcloud and bq."

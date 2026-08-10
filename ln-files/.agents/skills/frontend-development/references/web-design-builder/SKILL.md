@@ -470,17 +470,18 @@ Prefer responsive CSS that does not require media queries when it can express th
 ### Copy Line Breaks
 
 When shaping headings, lead copy, and short marketing text:
-- Use `span` wrappers for intentional visual lines. Set each span to `display: block` on wide layouts, and switch to `display: inline` at narrow breakpoints when fixed lines would look awkward.
+- Use `span` wrappers as phrase-level wrap candidates, not as mandatory line breaks by default. Set each visual-line span to `display: inline-block` so the browser may wrap between spans when space is tight while keeping each phrase together when possible.
+- Avoid media-query-only line-break behavior unless a breakpoint-specific composition is explicitly required. Prefer one intrinsic wrapping rule that works across mobile, tablet, and desktop widths.
 - Use `wbr` only as an optional break point inside a word or phrase. It should help long terms, mixed Japanese/English product names, URLs, IDs, or carefully chosen phrase boundaries wrap gracefully, not force a layout.
-- Use `br` only when the line break is semantically part of the content, such as addresses, signatures, poems, or truly fixed copy. Avoid using `br` as the default tool for desktop-only visual line breaks.
-- For Japanese copy, including Japanese-only and mixed Japanese/English text, prefer `word-break: keep-all` with `overflow-wrap: anywhere` on the copy container so Japanese text does not split unnaturally while still avoiding overflow on narrow screens.
+- Use `br` only when the line break is semantically part of the content, such as addresses, signatures, poems, or truly fixed copy. Avoid using `br` as the default tool for visual line breaks.
+- For Japanese copy, including Japanese-only and mixed Japanese/English text, prefer `word-break: keep-all` on the text container and phrase spans so Japanese text does not split unnaturally. Use `overflow-wrap: anywhere` on the container only when it is needed to prevent overflow; do not put `overflow-wrap: anywhere` on phrase spans unless splitting inside the phrase is acceptable.
 
 Preferred pattern for designed lead copy:
 
 ```html
 <p class="lead-copy">
   <span>国内外のクラフト<wbr>ビールを厳選。</span>
-  <span>季節ごとに入れ替わる<wbr>ラインナップを</span>
+  <span>季節ごとに入れ替わるラインナップを</span>
   <span>ぜひお楽しみください。</span>
 </p>
 ```
@@ -493,13 +494,10 @@ Preferred pattern for designed lead copy:
 }
 
 .lead-copy span {
-  display: block;
-}
-
-@media (max-width: 767px) {
-  .lead-copy span {
-    display: inline;
-  }
+  display: inline-block;
+  max-width: 100%;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 ```
 

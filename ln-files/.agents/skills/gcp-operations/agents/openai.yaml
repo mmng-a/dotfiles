@@ -1,0 +1,4 @@
+interface:
+  display_name: "GCP Operations"
+  short_description: "GCPコスト確認とCloud SQL運用を安全に支援します"
+  default_prompt: "Use $gcp-operations to investigate this GCP cost or Cloud SQL task."

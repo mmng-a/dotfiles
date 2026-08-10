@@ -1,0 +1,4 @@
+interface:
+  display_name: "iOS App Store Release Notes"
+  short_description: "Draft App Store release notes from git changes"
+  default_prompt: "Use $ios-app-store-release-notes to draft iOS App Store release notes from the latest tag to HEAD."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apple Publishing"
+  short_description: "App Store ConnectとmacOS配布を管理"
+  default_prompt: "Use $apple-publishing to update App Store Connect metadata safely."

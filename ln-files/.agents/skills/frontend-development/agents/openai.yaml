@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frontend Development"
+  short_description: "UI実装、検証、Vercel配布までを支援します"
+  default_prompt: "Use $frontend-development to implement and verify this frontend change."
