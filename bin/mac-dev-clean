@@ -15,7 +15,8 @@ fi
 readonly MODE="$1"
 PLAN_FILE="$(mktemp "${TMPDIR:-/tmp}/mac-dev-clean-plan.XXXXXX")"
 SKIP_FILE="$(mktemp "${TMPDIR:-/tmp}/mac-dev-clean-skip.XXXXXX")"
-trap 'rm -f "$PLAN_FILE" "$SKIP_FILE"' EXIT
+PNPM_STORE_FILE="$(mktemp "${TMPDIR:-/tmp}/mac-dev-clean-pnpm.XXXXXX")"
+trap 'rm -f "$PLAN_FILE" "$SKIP_FILE" "$PNPM_STORE_FILE"' EXIT
 
 size_kib() {
   if [[ -e "$1" ]]; then
@@ -39,7 +40,7 @@ record() {
   local kib="$3"
   local detail="$4"
 
-  [[ "$kib" -gt "$MINIMUM_KIB" ]] || return
+  [[ "$kib" == "unknown" || "$kib" -gt "$MINIMUM_KIB" ]] || return
   printf '%s\t%s\t%s\t%s\n' "$action" "$path" "$kib" "$detail" >> "$PLAN_FILE"
 }
 
@@ -135,6 +136,40 @@ scan_gradle_project() {
   fi
 }
 
+scan_pnpm_store() {
+  local project="$1"
+  local store
+
+  store="$(cd "$project" && pnpm store path 2>/dev/null)" || {
+    skip "$project" "pnpm store path を取得できない"
+    return
+  }
+  [[ -d "$store" ]] || return
+  if grep -Fqx -- "$store" "$PNPM_STORE_FILE"; then
+    return
+  fi
+
+  printf '%s\n' "$store" >> "$PNPM_STORE_FILE"
+  record "pnpm-store-prune" "$project" "unknown" "pnpm store prune ($store)"
+}
+
+scan_simulators() {
+  local line udid name device_path
+
+  command -v xcrun >/dev/null 2>&1 || {
+    skip "Core Simulator" "xcrun が見つからない"
+    return
+  }
+
+  while IFS= read -r line; do
+    udid="$(printf '%s\n' "$line" | sed -nE 's/.*\(([0-9A-F-]{36})\).*/\1/p')"
+    [[ -n "$udid" ]] || continue
+    device_path="$HOME/Library/Developer/CoreSimulator/Devices/$udid"
+    name="${line%% ($udid)*}"
+    record "simulator-delete" "$udid" "$(size_kib "$device_path")" "Unavailable Simulator: $name"
+  done < <(xcrun simctl list devices unavailable 2>/dev/null)
+}
+
 scan_projects() {
   local root
   for root in "$SENDOCORP_ROOT" "$DEVELOPER_ROOT"; do
@@ -153,7 +188,19 @@ scan_projects() {
         \( -name .git -o -name node_modules -o -name .pnpm-store -o -name .yarn -o -name .dart_tool -o -name .next -o -name .turbo -o -name target -o -name build \) -prune -o \
         -type f \( -name package.json -o -name pubspec.yaml -o -name Package.swift -o -name Cargo.toml -o -name gradlew \) -print0 2>/dev/null
     )
+
+    if command -v pnpm >/dev/null 2>&1; then
+      while IFS= read -r -d '' lockfile; do
+        scan_pnpm_store "$(dirname "$lockfile")"
+      done < <(
+        find "$root" \
+          \( -name .git -o -name node_modules -o -name .pnpm-store -o -name .yarn -o -name .dart_tool -o -name .next -o -name .turbo -o -name target -o -name build \) -prune -o \
+          -type f -name pnpm-lock.yaml -print0 2>/dev/null
+      )
+    fi
   done
+
+  command -v pnpm >/dev/null 2>&1 || skip "pnpm" "pnpm が見つからない"
 }
 
 add_machine_directory() {
@@ -203,10 +250,14 @@ print_plan() {
 
   echo "削除候補:"
   while IFS=$'\t' read -r action path kib detail; do
-    printf '  %-10s  %s  %s\n' "$(format_size "$kib")" "$detail" "$path"
-    total=$((total + kib))
+    if [[ "$kib" == "unknown" ]]; then
+      printf '  %-10s  %s\n' "容量未算出" "$detail"
+    else
+      printf '  %-10s  %s  %s\n' "$(format_size "$kib")" "$detail" "$path"
+      total=$((total + kib))
+    fi
   done < "$PLAN_FILE"
-  echo "合計: $(format_size "$total")"
+  echo "合計: $(format_size "$total")（容量未算出の pnpm store prune は除く）"
 
   if [[ -s "$SKIP_FILE" ]]; then
     echo
@@ -227,17 +278,20 @@ apply_action() {
       brew cleanup --scrub --prune=all && rm -rf -- "$(brew --cache)"
       ;;
     npm-cache) npm cache clean --force ;;
+    pnpm-store-prune) (cd "$path" && pnpm store prune) ;;
     dart-pub-cache) dart pub cache clean --force ;;
     flutter-clean) (cd "$path" && flutter clean) ;;
     swift-package-clean) (cd "$path" && swift package clean) ;;
     cargo-clean) (cd "$path" && cargo clean) ;;
     gradle-clean) (cd "$path" && ./gradlew clean) ;;
+    simulator-delete) xcrun simctl delete "$path" ;;
     *) echo "Unknown action: $action" >&2; return 1 ;;
   esac
 }
 
 scan_projects
 scan_machine_caches
+scan_simulators
 print_plan
 
 if [[ "$MODE" == "--check" ]]; then
