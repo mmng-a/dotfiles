@@ -1,0 +1,270 @@
+#!/usr/bin/env bash
+
+set -u
+set -o pipefail
+
+readonly SENDOCORP_ROOT="$HOME/sendocorp"
+readonly DEVELOPER_ROOT="$HOME/Developer"
+
+if [[ $# -ne 1 || ( "$1" != "--check" && "$1" != "--apply" ) ]]; then
+  echo "Usage: mac-dev-clean --check|--apply" >&2
+  exit 64
+fi
+
+readonly MODE="$1"
+PLAN_FILE="$(mktemp "${TMPDIR:-/tmp}/mac-dev-clean-plan.XXXXXX")"
+SKIP_FILE="$(mktemp "${TMPDIR:-/tmp}/mac-dev-clean-skip.XXXXXX")"
+trap 'rm -f "$PLAN_FILE" "$SKIP_FILE"' EXIT
+
+size_kib() {
+  if [[ -e "$1" ]]; then
+    du -sk "$1" 2>/dev/null | awk '{print $1}'
+  else
+    echo 0
+  fi
+}
+
+format_size() {
+  awk -v kib="$1" 'BEGIN {
+    if (kib >= 1048576) printf "%.1f GiB", kib / 1048576
+    else if (kib >= 1024) printf "%.1f MiB", kib / 1024
+    else printf "%d KiB", kib
+  }'
+}
+
+record() {
+  local action="$1"
+  local path="$2"
+  local kib="$3"
+  local detail="$4"
+  printf '%s\t%s\t%s\t%s\n' "$action" "$path" "$kib" "$detail" >> "$PLAN_FILE"
+}
+
+skip() {
+  printf '%s\t%s\n' "$1" "$2" >> "$SKIP_FILE"
+}
+
+is_git_ignored() {
+  local project="$1"
+  local target="$2"
+  local git_root relative
+
+  [[ ! -L "$target" ]] || return 1
+  git_root="$(git -C "$project" rev-parse --show-toplevel 2>/dev/null)" || return 1
+  [[ "$target" == "$git_root/"* ]] || return 1
+  relative="${target#"$git_root/"}"
+  git -C "$git_root" check-ignore -q -- "$relative"
+}
+
+add_ignored_directory() {
+  local project="$1"
+  local target="$2"
+  local label="$3"
+
+  [[ -e "$target" ]] || return
+  if is_git_ignored "$project" "$target"; then
+    record "remove-directory" "$target" "$(size_kib "$target")" "$label"
+  else
+    skip "$target" "Git 管理対象または ignore 対象外"
+  fi
+}
+
+build_size_kib() {
+  find "$1" \
+    \( -name .git -o -name node_modules -o -name .pnpm-store -o -name .yarn \) -prune -o \
+    -type d -name build -prune -exec du -sk {} + 2>/dev/null |
+    awk '{sum += $1} END {print sum + 0}'
+}
+
+scan_node_project() {
+  local project="$1"
+  add_ignored_directory "$project" "$project/node_modules" "Node.js dependencies"
+  add_ignored_directory "$project" "$project/.next" "Next.js build output"
+  add_ignored_directory "$project" "$project/.turbo" "Turborepo cache"
+}
+
+scan_flutter_project() {
+  local project="$1"
+  local kib=$(( $(size_kib "$project/build") + $(size_kib "$project/.dart_tool") ))
+  [[ "$kib" -gt 0 ]] || return
+
+  if command -v flutter >/dev/null 2>&1; then
+    record "flutter-clean" "$project" "$kib" "Flutter build output"
+  else
+    skip "$project" "flutter が見つからない"
+  fi
+}
+
+scan_swift_package() {
+  local project="$1"
+  local target="$project/.build"
+  [[ -e "$target" ]] || return
+
+  if command -v swift >/dev/null 2>&1; then
+    record "swift-package-clean" "$project" "$(size_kib "$target")" "SwiftPM .build"
+  else
+    skip "$project" "swift が見つからない"
+  fi
+}
+
+scan_cargo_project() {
+  local project="$1"
+  local target="$project/target"
+  [[ -e "$target" ]] || return
+
+  if command -v cargo >/dev/null 2>&1; then
+    record "cargo-clean" "$project" "$(size_kib "$target")" "Cargo target"
+  else
+    skip "$project" "cargo が見つからない"
+  fi
+}
+
+scan_gradle_project() {
+  local project="$1"
+  local kib
+  kib="$(build_size_kib "$project")"
+  [[ "$kib" -gt 0 ]] || return
+
+  if [[ -x "$project/gradlew" ]]; then
+    record "gradle-clean" "$project" "$kib" "Gradle build output"
+  else
+    skip "$project" "実行可能な Gradle wrapper が見つからない"
+  fi
+}
+
+scan_projects() {
+  local root
+  for root in "$SENDOCORP_ROOT" "$DEVELOPER_ROOT"; do
+    [[ -d "$root" ]] || { skip "$root" "ディレクトリが存在しない"; continue; }
+
+    while IFS= read -r -d '' manifest; do
+      case "$(basename "$manifest")" in
+        package.json) scan_node_project "$(dirname "$manifest")" ;;
+        pubspec.yaml) scan_flutter_project "$(dirname "$manifest")" ;;
+        Package.swift) scan_swift_package "$(dirname "$manifest")" ;;
+        Cargo.toml) scan_cargo_project "$(dirname "$manifest")" ;;
+        gradlew) scan_gradle_project "$(dirname "$manifest")" ;;
+      esac
+    done < <(
+      find "$root" \
+        \( -name .git -o -name node_modules -o -name .pnpm-store -o -name .yarn -o -name .dart_tool -o -name .next -o -name .turbo -o -name target -o -name build \) -prune -o \
+        -type f \( -name package.json -o -name pubspec.yaml -o -name Package.swift -o -name Cargo.toml -o -name gradlew \) -print0 2>/dev/null
+    )
+  done
+}
+
+add_machine_directory() {
+  local action="$1"
+  local path="$2"
+  local detail="$3"
+  [[ -e "$path" ]] && record "$action" "$path" "$(size_kib "$path")" "$detail"
+}
+
+scan_machine_caches() {
+  local brew_cache
+
+  if command -v brew >/dev/null 2>&1; then
+    brew_cache="$(brew --cache)"
+    add_machine_directory "brew-cache" "$brew_cache" "Homebrew downloads and metadata"
+  else
+    skip "Homebrew" "brew が見つからない"
+  fi
+
+  add_machine_directory "npm-cache" "$HOME/.npm" "npm cache"
+  add_machine_directory "remove-directory" "$HOME/Library/Caches/pnpm" "pnpm metadata cache"
+
+  if command -v pnpm >/dev/null 2>&1; then
+    record "pnpm-store-prune" "-" 0 "unreferenced pnpm store packages"
+  else
+    skip "pnpm" "pnpm が見つからない"
+  fi
+
+  if command -v dart >/dev/null 2>&1; then
+    add_machine_directory "dart-pub-cache" "$HOME/.pub-cache" "Dart and Flutter package cache"
+  else
+    skip "Dart Pub cache" "dart が見つからない"
+  fi
+
+  if ! pgrep -x Xcode >/dev/null 2>&1; then
+    add_machine_directory "remove-directory" "$HOME/Library/Developer/Xcode/DerivedData" "Xcode DerivedData"
+    add_machine_directory "remove-directory" "$HOME/Library/Caches/org.swift.swiftpm" "SwiftPM cache"
+  else
+    skip "Xcode caches" "Xcode が起動中"
+  fi
+
+  if ! pgrep -f GradleDaemon >/dev/null 2>&1; then
+    add_machine_directory "remove-directory" "$HOME/.gradle/caches" "Gradle dependency cache"
+  else
+    skip "$HOME/.gradle/caches" "Gradle daemon が起動中"
+  fi
+
+  if command -v xcrun >/dev/null 2>&1; then
+    record "simulator-unavailable" "-" 0 "unavailable Core Simulator devices"
+  else
+    skip "Core Simulator" "xcrun が見つからない"
+  fi
+}
+
+print_plan() {
+  local total=0
+  local action path kib detail
+
+  echo "削除候補:"
+  while IFS=$'\t' read -r action path kib detail; do
+    printf '  %-10s  %s  %s\n' "$(format_size "$kib")" "$detail" "$path"
+    total=$((total + kib))
+  done < "$PLAN_FILE"
+  echo "合計: $(format_size "$total")（コマンドで算出できないストア prune は除く）"
+
+  if [[ -s "$SKIP_FILE" ]]; then
+    echo
+    echo "除外:"
+    while IFS=$'\t' read -r path reason; do
+      printf '  %s: %s\n' "$path" "$reason"
+    done < "$SKIP_FILE"
+  fi
+}
+
+apply_action() {
+  local action="$1"
+  local path="$2"
+
+  case "$action" in
+    remove-directory) rm -rf -- "$path" ;;
+    brew-cache)
+      brew cleanup --scrub --prune=all && rm -rf -- "$(brew --cache)"
+      ;;
+    npm-cache) npm cache clean --force ;;
+    pnpm-store-prune) pnpm store prune ;;
+    dart-pub-cache) dart pub cache clean --force ;;
+    flutter-clean) (cd "$path" && flutter clean) ;;
+    swift-package-clean) (cd "$path" && swift package clean) ;;
+    cargo-clean) (cd "$path" && cargo clean) ;;
+    gradle-clean) (cd "$path" && ./gradlew clean) ;;
+    simulator-unavailable) xcrun simctl delete unavailable ;;
+    *) echo "Unknown action: $action" >&2; return 1 ;;
+  esac
+}
+
+scan_projects
+scan_machine_caches
+print_plan
+
+if [[ "$MODE" == "--check" ]]; then
+  exit 0
+fi
+
+failures=0
+echo
+echo "削除を開始します。"
+while IFS=$'\t' read -r action path kib detail; do
+  printf '  %s... ' "$detail"
+  if apply_action "$action" "$path"; then
+    echo "完了"
+  else
+    echo "失敗" >&2
+    failures=$((failures + 1))
+  fi
+done < "$PLAN_FILE"
+
+[[ "$failures" -eq 0 ]] || exit 1
