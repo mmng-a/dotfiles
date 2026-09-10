@@ -5,6 +5,7 @@ set -o pipefail
 
 readonly SENDOCORP_ROOT="$HOME/sendocorp"
 readonly DEVELOPER_ROOT="$HOME/Developer"
+readonly MINIMUM_KIB=1024
 
 if [[ $# -ne 1 || ( "$1" != "--check" && "$1" != "--apply" ) ]]; then
   echo "Usage: mac-dev-clean --check|--apply" >&2
@@ -37,6 +38,8 @@ record() {
   local path="$2"
   local kib="$3"
   local detail="$4"
+
+  [[ "$kib" -gt "$MINIMUM_KIB" ]] || return
   printf '%s\t%s\t%s\t%s\n' "$action" "$path" "$kib" "$detail" >> "$PLAN_FILE"
 }
 
@@ -173,12 +176,6 @@ scan_machine_caches() {
   add_machine_directory "npm-cache" "$HOME/.npm" "npm cache"
   add_machine_directory "remove-directory" "$HOME/Library/Caches/pnpm" "pnpm metadata cache"
 
-  if command -v pnpm >/dev/null 2>&1; then
-    record "pnpm-store-prune" "-" 0 "unreferenced pnpm store packages"
-  else
-    skip "pnpm" "pnpm が見つからない"
-  fi
-
   if command -v dart >/dev/null 2>&1; then
     add_machine_directory "dart-pub-cache" "$HOME/.pub-cache" "Dart and Flutter package cache"
   else
@@ -198,11 +195,6 @@ scan_machine_caches() {
     skip "$HOME/.gradle/caches" "Gradle daemon が起動中"
   fi
 
-  if command -v xcrun >/dev/null 2>&1; then
-    record "simulator-unavailable" "-" 0 "unavailable Core Simulator devices"
-  else
-    skip "Core Simulator" "xcrun が見つからない"
-  fi
 }
 
 print_plan() {
@@ -214,7 +206,7 @@ print_plan() {
     printf '  %-10s  %s  %s\n' "$(format_size "$kib")" "$detail" "$path"
     total=$((total + kib))
   done < "$PLAN_FILE"
-  echo "合計: $(format_size "$total")（コマンドで算出できないストア prune は除く）"
+  echo "合計: $(format_size "$total")"
 
   if [[ -s "$SKIP_FILE" ]]; then
     echo
@@ -235,13 +227,11 @@ apply_action() {
       brew cleanup --scrub --prune=all && rm -rf -- "$(brew --cache)"
       ;;
     npm-cache) npm cache clean --force ;;
-    pnpm-store-prune) pnpm store prune ;;
     dart-pub-cache) dart pub cache clean --force ;;
     flutter-clean) (cd "$path" && flutter clean) ;;
     swift-package-clean) (cd "$path" && swift package clean) ;;
     cargo-clean) (cd "$path" && cargo clean) ;;
     gradle-clean) (cd "$path" && ./gradlew clean) ;;
-    simulator-unavailable) xcrun simctl delete unavailable ;;
     *) echo "Unknown action: $action" >&2; return 1 ;;
   esac
 }
