@@ -22,3 +22,5 @@ ln-files/.config/raycast/extensions/
 ln-files/.config/zed/
 ln-files/.config/anyenv/
 ln-files/.config/raycast/extensions
+ln-files/.config/slack-music-status/.env
+ln-files/.config/slack-music-status/config.json
