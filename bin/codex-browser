@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import socket
+import sqlite3
 import subprocess
 import sys
 import tempfile
@@ -15,6 +16,9 @@ import tempfile
 
 STATE = Path(os.environ.get("CODEX_BROWSER_STATE_DIR", Path.home() / "Library/Caches/codex-browser"))
 CLI = Path.home() / ".local/bin/chrome-devtools"
+CHROME = (Path.home() / ".local/share/codex-browser/chrome/current/chrome-mac-arm64"
+          / "Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing")
+THREAD_DB = Path(os.environ.get("CODEX_HOME", Path.home() / ".codex")) / "state_5.sqlite"
 
 
 def key(value):
@@ -48,6 +52,22 @@ def record_path(root):
     return STATE / "threads" / (key(root) + ".json")
 
 
+def thread_info(thread):
+    """Read optional local metadata when a lifecycle hook was missed."""
+    if not THREAD_DB.exists():
+        return None
+    try:
+        with contextlib.closing(sqlite3.connect(THREAD_DB.as_uri() + "?mode=ro", uri=True, timeout=1)) as database:
+            row = database.execute("SELECT source, archived FROM threads WHERE id = ?", (thread,)).fetchone()
+        if row is None:
+            return None
+        source = json.loads(row[0]) if row[0].startswith("{") else {}
+        parent = source.get("subagent", {}).get("thread_spawn", {}).get("parent_thread_id")
+        return {"parent": parent, "archived": bool(row[1])}
+    except (sqlite3.Error, OSError, ValueError, AttributeError):
+        return None
+
+
 def root_for(thread):
     if not thread or len(thread) > 200:
         raise ValueError("A Codex thread ID is required.")
@@ -56,7 +76,10 @@ def root_for(thread):
         seen.add(thread)
         parent = load(STATE / "parents" / (key(thread) + ".json"))
         if not parent:
-            return thread
+            info = thread_info(thread)
+            if not info or not info["parent"]:
+                return thread
+            parent = {"parent": info["parent"]}
         thread = parent["parent"]
     raise ValueError("Invalid browser parent mapping.")
 
@@ -65,7 +88,7 @@ def process_identity(pid):
     """Return a process birth time and command; permission failures are errors."""
     result = subprocess.run(
         ["/bin/ps", "-p", str(pid), "-o", "lstart=", "-o", "comm="],
-        capture_output=True, text=True,
+        capture_output=True, text=True, env=dict(os.environ, LC_ALL="C", TZ="UTC"),
     )
     if result.returncode == 1 and not result.stdout.strip() and not result.stderr.strip():
         return None
@@ -88,6 +111,19 @@ def codex_owner():
             return {"pid": pid, "identity": process_identity(pid)}
         pid = int(fields[0])
     raise RuntimeError("Cannot identify the Codex process that owns this session.")
+
+
+def registered_entry(root):
+    """Register or resume a session while its caller holds the root lock."""
+    path = record_path(root)
+    entry = load(path)
+    if entry and not entry["ended"]:
+        if process_identity(entry["owner"]["pid"]) == entry["owner"]["identity"]:
+            return entry
+    entry = entry or {"root": root, "modes": {}}
+    entry.update(owner=codex_owner(), ended=False)
+    save(path, entry)
+    return entry
 
 
 def session_id(root, mode):
@@ -158,7 +194,8 @@ def reap(force_root=None):
                     continue
                 owner = entry["owner"]
                 if force_root is None and not entry["ended"]:
-                    if process_identity(owner["pid"]) == owner["identity"]:
+                    info = thread_info(root)
+                    if not (info and info["archived"]) and process_identity(owner["pid"]) == owner["identity"]:
                         continue
                 remaining = {}
                 for name, mode in entry["modes"].items():
@@ -192,10 +229,7 @@ def hook(payload):
         save(STATE / "parents" / (key(payload["agent_id"]) + ".json"), {"parent": root})
     elif event == "SessionStart":
         with locked(root):
-            path = record_path(root)
-            entry = load(path) or {"root": root, "modes": {}}
-            entry.update(owner=codex_owner(), ended=False)
-            save(path, entry)
+            registered_entry(root)
         print(json.dumps({"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext":
             "Browser commands: use codex-browser <DevTools command> [arguments]. It automatically shares "
             "one browser with this root thread's subagents and stops it at SessionEnd. Do not supply "
@@ -239,9 +273,7 @@ def run(arguments):
     command = arguments[0]
     with locked(root):
         path = record_path(root)
-        entry = load(path)
-        if not entry or entry["ended"]:
-            raise RuntimeError("This thread has no active SessionStart registration; restart Codex CLI to load its hooks.")
+        entry = registered_entry(root)
         session = session_id(root, mode_name)
         mode = entry["modes"].get(mode_name)
         current = status(session)
@@ -260,12 +292,15 @@ def run(arguments):
         if command == "start" and current and len(arguments) > 1:
             raise ValueError("Startup options cannot change an active browser; stop this owned session first.")
         if current is None:
+            if not CHROME.is_file():
+                raise RuntimeError("Chrome for Testing is not installed at " + str(CHROME))
             entry["modes"][mode_name] = {"session": session, "pid": None, "started": None,
                                           "keep_open": keep_open}
             save(path, entry)
             subprocess.run([str(CLI), "start", "--sessionId", session,
                                      "--no-headless" if headed else "--headless", "--isolated",
-                                     "--no-usage-statistics", *(arguments[1:] if command == "start" else [])], check=True)
+                                     "--executablePath", str(CHROME), "--no-usage-statistics",
+                                     *(arguments[1:] if command == "start" else [])], check=True)
             current = status(session)
             if current is None:
                 raise RuntimeError("The dedicated daemon did not become ready.")
@@ -284,7 +319,7 @@ def main():
         if arguments in ([], ["--help"]):
             print("Usage: codex-browser [--headed] [--keep-open] <DevTools command> [arguments]\n"
                   "       codex-browser sessions | reap | release <root-thread-id>\n"
-                  "Browser commands require a registered Codex session and run outside the sandbox.")
+                  "Browser commands automatically register the current Codex session and run outside the sandbox.")
             return 0
         if arguments == ["hook"]:
             hook(json.load(sys.stdin))
