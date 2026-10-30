@@ -40,7 +40,28 @@ promptinit
 PURE_GIT_PULL=0
 prompt pure
 
-eval "$(anyenv init -)"
+# zsh -c needs the environment before executing its command.
+if [[ -o zle && -t 0 && -z $ZSH_EXECUTION_STRING ]]; then
+    _anyenv_init_callback() {
+        if (( $2 )); then
+            print -u2 -r -- "anyenv: initialization failed: $5"
+        elif ! eval "$3"; then
+            print -u2 -r -- "anyenv: failed to apply shell initialization"
+        fi
+        async_stop_worker anyenv_init
+        unfunction _anyenv_init_callback
+    }
+
+    if async_start_worker anyenv_init -n; then
+        async_register_callback anyenv_init _anyenv_init_callback
+        async_job anyenv_init anyenv init - --no-rehash zsh
+    else
+        print -u2 -r -- "anyenv: failed to start initialization worker"
+        unfunction _anyenv_init_callback
+    fi
+else
+    eval "$(anyenv init - --no-rehash zsh)"
+fi
 
 # pnpm
 export PNPM_HOME="/Users/masashiaso/Library/pnpm"
