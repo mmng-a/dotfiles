@@ -34,9 +34,12 @@ for file in $HOME/dotfiles/bin/completions/*; do
 	source $file
 done
 
-# Starship
-export STARSHIP_CONFIG=~/.config/starship.toml
-eval "$(starship init zsh)"
+# Pure
+fpath+=(/opt/homebrew/share/zsh/site-functions)
+autoload -Uz promptinit
+promptinit
+PURE_GIT_PULL=0
+prompt pure
 
 eval "$(gh completion -s zsh)"
 eval "$(anyenv init -)"
