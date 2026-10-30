@@ -1,6 +1,10 @@
+typeset -U fpath
 fpath=(~/dotfiles/zsh/completions/ $fpath)
 autoload -Uz compinit
 compinit
+if [[ -f $_comp_dumpfile && ( ! -f ${_comp_dumpfile}.zwc || $_comp_dumpfile -nt ${_comp_dumpfile}.zwc ) ]]; then
+  zcompile "$_comp_dumpfile"
+fi
 
 # 補完の選択が楽に
 zstyle ':completion:*' menu select
