@@ -1,4 +1,7 @@
 _prompt_preexec() {
+  unset prompt_command_started
+  local -a command_words=("${(@Q)${(z)3}}")
+  [[ ${command_words[1]:t} == codex ]] && return 0
   typeset -gF prompt_command_started=$EPOCHREALTIME
 }
 

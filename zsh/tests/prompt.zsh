@@ -14,7 +14,16 @@ osascript() {
   print -r -- "$argv[-1]" >> "$notification_log"
 }
 
-_prompt_preexec
+for invocation in 'codex' 'codex resume' '/opt/homebrew/bin/codex resume' '"/opt/homebrew/bin/codex" resume'; do
+  prompt_command_started=$(( EPOCHREALTIME - 61 ))
+  _prompt_preexec "$invocation" "$invocation" "$invocation"
+  (( ! ${+prompt_command_started} ))
+  _prompt_precmd
+  [[ ! -e $notification_log ]]
+done
+_prompt_preexec 'cx resume' 'codex resume' 'codex resume'
+(( ! ${+prompt_command_started} ))
+_prompt_preexec 'rg codex .' 'rg codex .' 'rg codex .'
 (( EPOCHREALTIME - prompt_command_started < 1 ))
 prompt_command_started=$(( EPOCHREALTIME - 59.1 ))
 _prompt_precmd
