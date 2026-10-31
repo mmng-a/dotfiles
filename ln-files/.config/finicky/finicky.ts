@@ -11,6 +11,11 @@ module.exports = {
   ],
   handlers: [
     {
+      match: url => url.hostname === "slides.google.com" ||
+        (url.hostname === "docs.google.com" && /^\/presentation(?:\/|$)/.test(url.pathname)),
+      browser: "Google Chrome"
+    },
+    {
       match: finicky.matchHostnames(["localhost"]),
       browser: "Google Chrome"
     },
