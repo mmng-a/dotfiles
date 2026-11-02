@@ -1,6 +1,10 @@
 [user]
 	name = Masashi Aso
 	email = masashi.apple.japan@icloud.com
+[includeIf "gitdir:~/Developer/"]
+	path = ~/.gitconfig-personal
+[includeIf "gitdir:~/sendocorp/"]
+	path = ~/.gitconfig-work
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
