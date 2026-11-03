@@ -10,6 +10,7 @@ ln-files/.vim/viminfo
 ln-files/.vim/viminfo*
 ln-files/.vim/plugged
 ln-files/.config/configstore/
+ln-files/.config/doze-bworser-mcp/
 ln-files/.config/coc/extensions
 ln-files/.config/coc/lists
 ln-files/.config/flutter/
