@@ -1,0 +1,3 @@
+interface:
+  display_name: "Software Design"
+  short_description: "既存手段の適合性と責任・契約を調べ、保守しやすい設計を選ぶ"

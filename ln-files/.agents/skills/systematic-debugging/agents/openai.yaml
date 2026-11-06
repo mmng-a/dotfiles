@@ -1,0 +1,3 @@
+interface:
+  display_name: "Systematic Debugging"
+  short_description: "症状を説明する証拠から原因を調べ、修正案と検証範囲を判断する"
