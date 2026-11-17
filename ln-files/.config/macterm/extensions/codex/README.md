@@ -4,8 +4,7 @@ Open the command palette with Command-P and select Codex.
 
 - New Session starts Codex in a new tab in the current project.
 - New Session in Worktree runs `codex --worktree` in a new tab to start a session in a new managed Git worktree.
-- The first screen shows up to five of the most recently updated conversations in that project.
-- All Sessions shows up to 100 conversations, newest first. Search by title, branch, or session ID.
+- The first screen shows up to 100 conversations in the current project, newest first. Search by title, branch, or session ID.
 - Select a conversation to run `codex resume <session-id>` in a new tab.
 - Use Option-Return or Option-click to open a new session or resume a conversation in a split.
 
