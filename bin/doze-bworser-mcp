@@ -1,0 +1,7 @@
+#!/bin/sh
+set -eu
+doze_install="$HOME/.local/share/doze-bworser-mcp/local"
+DOZE_RUNTIME_DIR="$doze_install/runtime"
+DOZE_NODE_PATH="$(command -v node)"
+export DOZE_RUNTIME_DIR DOZE_NODE_PATH
+exec "$doze_install/bin/doze-bworser-mcp" "$@"
