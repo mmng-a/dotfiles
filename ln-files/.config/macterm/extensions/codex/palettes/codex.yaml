@@ -1,0 +1,32 @@
+name: Codex
+description: Start and resume Codex sessions in this project
+requires: [codex, python3]
+root: menu
+nodes:
+  menu:
+    items:
+      - title: New Session
+        icon: plus
+        action: { run: codex }
+        alt: { title: New Session in a Split, run: codex, in: split }
+      - title: New Session in Worktree
+        icon: arrow.triangle.branch
+        action: { run: codex --worktree }
+      - { title: All Sessions, subtitle: Recent sessions in this project, icon: clock.arrow.circlepath, enter: sessions }
+    list: python3 "$MACTERM_EXTENSION_DIR/scripts/list-sessions.py" --limit 3
+    title: .title
+    subtitle: .subtitle
+    icon: arrow.uturn.backward
+    match: [.title, .subtitle, .id]
+    export: { SESSION: .id }
+    action: { run: 'codex resume "$SESSION"' }
+    alt: { title: Resume in a Split, run: 'codex resume "$SESSION"', in: split }
+  sessions:
+    list: python3 "$MACTERM_EXTENSION_DIR/scripts/list-sessions.py" --limit 100
+    title: .title
+    subtitle: .subtitle
+    icon: arrow.uturn.backward
+    match: [.title, .subtitle, .id]
+    export: { SESSION: .id }
+    action: { run: 'codex resume "$SESSION"' }
+    alt: { title: Resume in a Split, run: 'codex resume "$SESSION"', in: split }
