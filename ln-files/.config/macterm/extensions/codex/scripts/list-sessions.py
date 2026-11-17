@@ -40,6 +40,7 @@ def main():
         WHERE archived = 0
           AND source IN ('cli', 'vscode')
           AND (thread_source IS NULL OR thread_source IN ('user', 'voice_chat'))
+          AND (trim(coalesce(name, '')) != '' OR trim(title) != '')
           AND cwd IN (?, ?)
         ORDER BY updated_at DESC, id DESC
         LIMIT ?
@@ -49,7 +50,12 @@ def main():
 
     output = []
     for session_id, name, title, updated_at, branch in rows:
-        label = next((line.strip() for line in (name or title or "").splitlines() if line.strip()), "Untitled session")
+        label = next(
+            (line.strip() for value in (name, title) for line in (value or "").splitlines() if line.strip()),
+            None,
+        )
+        if label is None:
+            continue
         subtitle = datetime.fromtimestamp(updated_at).strftime("%Y-%m-%d %H:%M")
         if branch:
             subtitle += " · " + branch

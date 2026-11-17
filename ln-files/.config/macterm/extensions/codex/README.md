@@ -4,7 +4,7 @@ Open the command palette with Command-P and select Codex.
 
 - New Session starts Codex in a new tab in the current project.
 - New Session in Worktree runs `codex --worktree` in a new tab to start a session in a new managed Git worktree.
-- The first screen shows the three most recently updated conversations in that project.
+- The first screen shows up to five of the most recently updated conversations in that project.
 - All Sessions shows up to 100 conversations, newest first. Search by title, branch, or session ID.
 - Select a conversation to run `codex resume <session-id>` in a new tab.
 - Use Option-Return or Option-click to open a new session or resume a conversation in a split.
@@ -18,7 +18,8 @@ The key opens the palette. Press Return on New Session to start Codex.
 The helper reads the highest-numbered `state_*.sqlite` in `CODEX_HOME`, or `~/.codex` when that variable is unset.
 It opens the database in read-only mode and reads conversation metadata only.
 It selects CLI and app/IDE user conversations whose saved working directory matches the project directory.
-Archived conversations, non-interactive runs, and sub-agent conversations are excluded.
+Archived conversations, non-interactive runs, sub-agent conversations, and unnamed empty sessions are excluded.
+Each listing reads the current saved names. A saved name takes precedence over the original conversation title.
 No Codex process starts until you select a new session action or a conversation.
 
 This personal extension uses the internal database schema checked with Codex CLI 0.167.1.
